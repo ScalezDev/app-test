@@ -1,5 +1,5 @@
 const config = {
-  appAddress: 'https://nimrod-chatbot.localtunnel.me',
+  appAddress: '@APP_ADDRESS',
   shopId: '@SHOP_ID',
 };
 
