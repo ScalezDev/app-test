@@ -3,9 +3,10 @@ const cookie = require('cookie');
 
 const router = express.Router();
 
-const { apiKey } = require('../../config');
+const Config = require('../../config');
 
 router.get('/', (req, res) => {
+  const { apiKey } = Config;
   res.render('home', {
     title: 'Home',
     api_key: apiKey,

@@ -6,12 +6,12 @@ const request = require('request-promise');
 const express = require('express');
 const fs = require('fs');
 const db = require('../db/database-module');
+const Config = require('../../config');
 
 const router = express.Router();
 
-const { apiKey, apiSecret, scopes, appAddress } = require('../../config');
-
 router.get('/', (req, res) => {
+  const { apiKey, scopes, appAddress } = Config;
   const { shop } = req.query;
   if (shop) {
     const state = nonce();
@@ -30,6 +30,7 @@ router.get('/', (req, res) => {
 });
 
 router.get('/callback', (req, res) => {
+  const { apiKey, apiSecret, appAddress } = Config;
   const { shop, hmac, code, state } = req.query;
   const stateCookie = cookie.parse(req.headers.cookie).state;
   console.log('$ callback');
