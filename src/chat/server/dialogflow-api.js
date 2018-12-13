@@ -1,7 +1,7 @@
 const dialogflow = require('dialogflow');
 
 const DialogFlowApi = (() => {
-  const PROJECT_ID = 'sizedetector';
+  const PROJECT_ID = 'mimetic-might-225409';
   const LANGUAGE_CODE = 'en-US';
   let sessionClient;
 
