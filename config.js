@@ -20,6 +20,7 @@ module.exports = (() => {
       ...globalDetails,
       ...(isLocal ? localDetails : previewDetails),
     };
+    console.log(details);
   };
 
   return {
