@@ -373,7 +373,7 @@ const DOMHandler = (() => {
 
   const createChat = (settings) => {
     createChatDOM();
-    addBotMessage({ message: settings.open_message });
+    addBotMessage({ message: settings.anonymous_open_message });
     chatDOM.button.on('click', ChatApp.handleUserInput);
     chatDOM.input.on(
       'keypress',
@@ -485,7 +485,7 @@ const MessageQueue = (() => {
 
 const ChatApp = (() => {
   const loadSettings = () => ({
-    open_message: 'Do you want to use our bot to measure your size?',
+    anonymous_open_message: 'Do you want to use our bot to measure your size?',
   });
   const handleUserInput = () => {
     const text = DOMHandler.getInputText();
@@ -539,6 +539,23 @@ const ChatApp = (() => {
     );
   };
 
+  const sendCustomerMerchantId = () => {
+    $.post({
+      url: `${config.appAddress}/chat/server/submitUserIdentity`,
+      data: JSON.stringify({
+        merchant_id: config.shopId,
+        customer_id: $('#customer_shop_id').attr('value'),
+      }),
+      contentType: 'application/json',
+    })
+      .done(() => {
+        console.log('update user identity');
+      })
+      .fail((error) => {
+        console.log(error.statusText);
+      });
+  };
+
   const init = () => {
     if (
       Array.from(document.getElementsByTagName('meta'))
@@ -546,6 +563,7 @@ const ChatApp = (() => {
         .getAttribute('content') === 'product'
     ) {
       const settings = loadSettings();
+      sendCustomerMerchantId();
       DOMHandler.createChat(settings);
     }
   };

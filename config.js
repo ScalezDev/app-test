@@ -14,7 +14,7 @@ module.exports = (() => {
   };
 
   const globalDetails = {
-    scopes: 'read_products,write_script_tags,read_themes,write_themes',
+    scopes: 'read_products,write_script_tags,read_themes,write_themes,read_customers',
   };
   let details;
   const init = (isLocal) => {

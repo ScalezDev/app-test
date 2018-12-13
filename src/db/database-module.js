@@ -46,11 +46,20 @@ const databaseModule = (() => {
   const checkIfMerchantExists = async (domain) =>
     !!(await Merchant.findOne({ domain }));
 
+  const findMerchant = async (merchantId) =>
+    (await Merchant.findOne({ _id: merchantId }));
+
+  const addCustomerToMarchent = (merchant, customerData) => {
+    merchant.customers.push(customerData);
+    merchant.save();
+  }
   return {
     connect,
     addConversation,
     addMerchant,
     checkIfMerchantExists,
+    findMerchant,
+    addCustomerToMarchent,
   };
 })();
 
