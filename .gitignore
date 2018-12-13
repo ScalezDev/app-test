@@ -2,3 +2,4 @@ certificates/
 node_modules/
 .env
 npm-debug.log
+google-authentication.json
