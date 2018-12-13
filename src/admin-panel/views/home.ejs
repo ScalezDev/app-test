@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<script src="https://cdn.shopify.com/s/assets/external/app.js"></script>
+	<script type="text/javascript">
+	alert('hello');
+	ShopifyApp.init({
+		apiKey: '<%= api_key %>',
+		shopOrigin: 'https://<%= shop %>.myshopify.com'
+	});
+	</script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+	<link rel='stylesheet' href='/stylesheets/foundation.min.css' />
+	<link rel='stylesheet' href='/stylesheets/style.css' />
+	<title><%= title %></title>
+</head>
+<body>
+	<ul>
+		<li><a href="/addChat">Add Chat to store!</a></li>
+		<li><a href="/shopify?shop=<%= shop %>">Get OAuth again</a></li>
+		<li><a href="/shopify/allThemes">view all themes</a></li>
+	</ul>
+</body>
+</html>

@@ -1,0 +1,5 @@
+<h1>Hello World!</h1>
+{% if customer %}
+<script id="alert">alert({{customer.id}})</script>
+<script> const elem = document.getElementById('alert'); elem.parent.removeChild(elem);</script>
+{% endif %}
