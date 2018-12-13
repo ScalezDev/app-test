@@ -23,8 +23,10 @@ module.exports = (() => {
     console.log(details);
   };
 
+  const getDetails = () => details;
+
   return {
-    ...details,
+    getDetails,
     init,
   };
 })();

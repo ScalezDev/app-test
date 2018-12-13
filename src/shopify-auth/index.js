@@ -6,12 +6,13 @@ const request = require('request-promise');
 const express = require('express');
 const fs = require('fs');
 const db = require('../db/database-module');
-const Config = require('../../config');
+const Config = require('../../config').getDetails();
 
 const router = express.Router();
 
 router.get('/', (req, res) => {
   const { apiKey, scopes, appAddress } = Config;
+  console.log(Config);
   const { shop } = req.query;
   if (shop) {
     const state = nonce();
