@@ -71,6 +71,7 @@ const ChatServer = (() => {
         } ${weight.unit}.
         Your bra is ${braSize.band}${braSize.cup}, Correct?`,
         // options: ['Yes', 'No'],
+        options: [],
         isRunning: false,
       });
     });
