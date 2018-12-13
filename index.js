@@ -60,15 +60,16 @@ db.connect(databaseCred)
     console.log('Connected to the database!');
     if (isLocal) {
       const httpServer = http.createServer(app);
-      httpServer &&
+      if (httpServer) {
         httpServer.listen(3000, () => {
           console.log('HTTP app listening on port 3000!');
         });
+      }
     } else {
       const redirectApp = express();
 
       redirectApp.get('*', (req, res) => {
-        res.redirect('https://app.scalez.io' + req.url);
+        res.redirect(`https://app.scalez.io${req.url}`);
       });
       const redirectServer = http.createServer(redirectApp);
       const httpsServer = https.createServer(
@@ -78,13 +79,14 @@ db.connect(databaseCred)
 
       redirectServer.listen(80);
 
-      httpsServer &&
-        httpsServer.listen(config.httpsPort, () => {
+      if (httpsServer) {
+        httpsServer.listen(443, () => {
           console.log('HTTPS app listening on port 443!');
         });
+      }
     }
   })
   .catch((error) => {
     console.error('database connection failed:');
-    console.error(error.errmsg);
+    console.error(error.errmsg || error);
   });
