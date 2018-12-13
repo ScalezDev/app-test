@@ -4,11 +4,16 @@ const cookie = require('cookie');
 const cors = require('cors');
 const bodyParser = require('body-parser');
 const express = require('express');
+const http = require('http');
+const https = require('https');
 const db = require('./src/db/database-module');
+const authentication = require('./authentication');
 
 const app = express();
 
-require('./config').init(process.argv.includes('--local'));
+const isLocal = process.argv.includes('--local');
+
+require('./config').init(isLocal);
 
 const { appAddress, databaseCred } = require('./config');
 
@@ -53,9 +58,31 @@ app.get('/addChat', (req, res) => {
 db.connect(databaseCred)
   .then(() => {
     console.log('Connected to the database!');
-    app.listen(3000, () => {
-      console.log('Example app listening on port 3000!');
-    });
+    if (isLocal) {
+      const httpServer = http.createServer(app);
+      httpServer &&
+        httpServer.listen(3000, () => {
+          console.log('HTTP app listening on port 3000!');
+        });
+    } else {
+      const redirectApp = express();
+
+      redirectApp.get('*', (req, res) => {
+        res.redirect('https://app.scalez.io' + req.url);
+      });
+      const redirectServer = http.createServer(redirectApp);
+      const httpsServer = https.createServer(
+        authentication.getCredentials(),
+        app,
+      );
+
+      redirectServer.listen(80);
+
+      httpsServer &&
+        httpsServer.listen(config.httpsPort, () => {
+          console.log('HTTPS app listening on port 443!');
+        });
+    }
   })
   .catch((error) => {
     console.error('database connection failed:');
