@@ -13,13 +13,6 @@ module.exports = (() => {
 
   const globalDetails = {
     scopes: 'read_products,write_script_tags,read_themes,write_themes',
-    databaseCred: {
-      server: 'ds127704.mlab.com',
-      port: '27704',
-      database: 'scalez-data',
-      username: 'server',
-      password: 'alphabeta123',
-    },
   };
   let details;
   const init = (isLocal) => {

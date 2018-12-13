@@ -6,6 +6,7 @@ const bodyParser = require('body-parser');
 const express = require('express');
 const http = require('http');
 const https = require('https');
+const databaseCred = require('./database-cred');
 const db = require('./src/db/database-module');
 const authentication = require('./authentication');
 
@@ -15,7 +16,7 @@ const isLocal = process.argv.includes('--local');
 
 require('./config').init(isLocal);
 
-const { appAddress, databaseCred } = require('./config');
+const { appAddress } = require('./config');
 
 app.set('views', path.join(__dirname, 'src/admin-panel/views'));
 app.set('view engine', 'ejs');
