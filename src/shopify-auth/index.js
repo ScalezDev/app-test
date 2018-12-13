@@ -5,6 +5,8 @@ const querystring = require('querystring');
 const request = require('request-promise');
 const express = require('express');
 const fs = require('fs');
+const path = require('path');
+
 const db = require('../db/database-module');
 const Config = require('../../config').getDetails();
 
@@ -151,9 +153,7 @@ router.get('/allThemes', async (req, res) => {
   );
   // console.log(file);
   const snippetContent = fs
-    .readFileSync(
-      '/home/nimrod/Projects/Yaron/shopify-fatbot/src/chat/client/theme-assets/customer_id.liquid',
-    )
+    .readFileSync('/home/nimrod/Projects/Yaron/Scalez/app-test/src/chat/client/theme-assets/customer_id.liquid')
     .toString();
   console.log(snippetContent);
 
@@ -168,7 +168,6 @@ router.get('/allThemes', async (req, res) => {
       },
     },
   );
-
   // const validation = await callToApi(
   //   'put',
   //   `/admin/themes/${mainTheme.id}/assets.json`,
