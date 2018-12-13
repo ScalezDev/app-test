@@ -1,7 +1,9 @@
 const dialogflow = require('dialogflow');
 
+const Config = require('../../../config').getDetails();
+
 const DialogFlowApi = (() => {
-  const PROJECT_ID = 'mimetic-might-225409';
+  const PROJECT_ID = Config.dialogFlowProjectId;
   const LANGUAGE_CODE = 'en-US';
   let sessionClient;
 

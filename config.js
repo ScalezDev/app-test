@@ -3,12 +3,14 @@ module.exports = (() => {
     appAddress: 'https://nimrod-chatbot.localtunnel.me',
     apiKey: '1147408bd932ee445da9cf6d46d11cec',
     apiSecret: '3d7bf0fae44459a85480462bbe07bd6d',
+    dialogFlowProjectId: 'sizedetector',
   };
 
   const previewDetails = {
     appAddress: 'https://app.scalez.io',
     apiKey: 'e34ddc0e70ee8a47b6e145f44d1f3076',
     apiSecret: 'f92252a21e57b7c183b202b60cff333a',
+    dialogFlowProjectId: 'mimetic-might-225409',
   };
 
   const globalDetails = {
