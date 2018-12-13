@@ -8,6 +8,8 @@ const db = require('./src/db/database-module');
 
 const app = express();
 
+require('./config').init(process.argv.includes('--local'));
+
 const { appAddress, databaseCred } = require('./config');
 
 app.set('views', path.join(__dirname, 'src/admin-panel/views'));

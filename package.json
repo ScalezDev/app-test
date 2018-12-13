@@ -6,7 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "live": "nodemon index.js",
-    "dev": "gnome-terminal -- /bin/bash -c 'lt --port 3000 --subdomain nimrod-chatbot; read' && nodemon index.js"
+    "local": "nodemon index.js --local",
+    "dev-pack": "gnome-terminal -- /bin/bash -c 'lt --port 3000 --subdomain nimrod-chatbot; read' && nodemon index.js"
   },
   "author": "",
   "license": "ISC",
